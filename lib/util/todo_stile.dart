@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:to_doapp/model/notemodel.dart';
 
 class ToDotile extends StatelessWidget{
-  final String taskname;
+  final notemoddel nm;
+  /*final String taskname;
   final bool taskcomplet;
   Function(bool?)? onChanged;
-  Function(BuildContext?)? deletetask;
-   ToDotile({super.key,
-    required this.taskname,
+  Function(BuildContext?)? deletetask;*/
+   ToDotile({super.key, required this.nm,
+    /*required this.taskname,
     required this.taskcomplet,
     required this.onChanged,
-     required this.deletetask
+     required this.deletetask*/
   });
 
   @override
@@ -21,7 +23,7 @@ class ToDotile extends StatelessWidget{
        endActionPane: ActionPane(
          motion: StretchMotion(),
          children: [
-           SlidableAction(onPressed: deletetask,
+           SlidableAction(onPressed: nm.deletetask,
            icon: Icons.delete,
            backgroundColor: Colors.red.shade300,
            borderRadius: BorderRadius.circular(12),)
@@ -34,9 +36,9 @@ class ToDotile extends StatelessWidget{
          child:
          Row(
            children: [
-             Checkbox(value: taskcomplet, onChanged: onChanged,
+             Checkbox(value: nm.taskcomplet, onChanged: nm.onChanged,
                activeColor: Colors.black,),
-             Expanded(child: Text(taskname,style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,decoration:taskcomplet? TextDecoration.lineThrough:TextDecoration.none),)),
+             Expanded(child: Text(nm.taskname,style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,decoration:nm.taskcomplet? TextDecoration.lineThrough:TextDecoration.none),)),
            ],
          ),
          decoration: BoxDecoration(color: Colors.indigoAccent,
