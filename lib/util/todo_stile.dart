@@ -38,7 +38,15 @@ class ToDotile extends StatelessWidget{
            children: [
              Checkbox(value: nm.taskcomplet, onChanged: nm.onChanged,
                activeColor: Colors.black,),
-             Expanded(child: Text(nm.taskname,style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,decoration:nm.taskcomplet? TextDecoration.lineThrough:TextDecoration.none),)),
+             Expanded(child:
+             Text(nm.taskname,style: TextStyle(fontSize: 22,
+                 fontWeight: FontWeight.bold,
+                 decoration:nm.taskcomplet? TextDecoration.lineThrough:TextDecoration.none),)),
+             Row(
+               children: [
+                 Text(nm.taskfrom),Text(' : '),Text(nm.taskto)
+               ],
+             )
            ],
          ),
          decoration: BoxDecoration(color: Colors.indigoAccent,

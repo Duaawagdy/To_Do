@@ -7,7 +7,7 @@ class tododatabase {
 
   void createinitdata() {
     todolist = [
-      TodoItem('Make your tasks!', false),
+      TodoItem('Make your tasks!', false,'from','to'),
     ];
   }
 
@@ -16,14 +16,14 @@ class tododatabase {
     if (dynamicData != null) {
       todolist = (dynamicData as List<dynamic>).map((item) {
         if (item is List<dynamic>) {
-          return TodoItem(item[0] as String, item[1] as bool);
+          return TodoItem(item[0] as String, item[1] as bool,item[2] as String,item[3] as String);
         } else if (item is bool) {
           // Handle boolean values if necessary
           // For example, you can add a default TodoItem
-          return TodoItem('Default Task', item);
+          return TodoItem('Default Task', item,'from','to');
         } else {
           // Handle other data types if needed
-          return TodoItem('Default Task', false);
+          return TodoItem('Default Task', false,'from','from');
         }
       }).toList();
       print(todolist);

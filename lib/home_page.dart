@@ -18,6 +18,8 @@ class Homepage extends StatefulWidget{
 
 class _homepagestate extends State<Homepage>{
   TextEditingController _controller=TextEditingController();
+  TextEditingController _controllerfrom=TextEditingController();
+  TextEditingController _controllerto=TextEditingController();
   tododatabase dp= tododatabase();
   final _box=Hive.box('box');
   @override
@@ -41,7 +43,7 @@ class _homepagestate extends State<Homepage>{
   }
   void savetask(){
     setState(() {
-      dp.todolist.add(TodoItem(_controller.text, false));
+      dp.todolist.add(TodoItem(_controller.text, false,_controllerfrom.text,_controllerto.text));
       _controller.clear();
     });
     dp.updateData();
@@ -54,13 +56,14 @@ class _homepagestate extends State<Homepage>{
   void createtask(){
     showDialog(context: context, builder:(context){
       return dialogBox(
+        
         controller: _controller,
         onsave:
         savetask
         ,
         oncancel:
             ()=>
-            Navigator.of(context).pop()
+            Navigator.of(context).pop(), controllerFrom: _controllerfrom, controllerTo: _controllerto
 
 
         ,
@@ -91,7 +94,7 @@ class _homepagestate extends State<Homepage>{
             return ToDotile(nm: notemoddel(taskname: dp.todolist[index].taskName,
                 taskcomplet: dp.todolist[index].isCompleted,
                 onChanged: (value)=>checkchange(value,index),
-                deletetask: (Context ) => deletetask(index) ));
+                deletetask: (Context ) => deletetask(index), taskfrom: dp.todolist[index].from, taskto: dp.todolist[index].to  ));
 
 
 
